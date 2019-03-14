@@ -1,0 +1,193 @@
+{
+    "items": [
+        {
+            "dungeon_name": "\u8d85\u7d76\u30e1\u30bf\u30c9\u30e9 \u964d\u81e8\uff01",
+            "end_timestamp": 1547078400,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547067600
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u9b54\u7a9f",
+            "end_timestamp": 1547089200,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547078400
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u907a\u8de1",
+            "end_timestamp": 1547089200,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547078400
+        },
+        {
+            "dungeon_name": "$d3423e$\u30b0\u30e9\u30c8 \u964d\u81e8\uff01",
+            "end_timestamp": 1547100000,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547089200
+        },
+        {
+            "dungeon_name": "\u8d85\u7d76\u30e1\u30bf\u30c9\u30e9 \u964d\u81e8\uff01",
+            "end_timestamp": 1547110800,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547100000
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u9b54\u7a9f",
+            "end_timestamp": 1547121600,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547110800
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u907a\u8de1",
+            "end_timestamp": 1547121600,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547110800
+        },
+        {
+            "dungeon_name": "\u8ee2\u751f\u306e\u9593",
+            "end_timestamp": 1547132400,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547121600
+        },
+        {
+            "dungeon_name": "\u3077\u308c\u30c9\u30e9\u5927\u91cf\u767a\u751f\uff01",
+            "end_timestamp": 1547164800,
+            "group": "BLUE",
+            "server": "JP",
+            "start_timestamp": 1547154000
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u9b54\u7a9f",
+            "end_timestamp": 1547078400,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547067600
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u907a\u8de1",
+            "end_timestamp": 1547078400,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547067600
+        },
+        {
+            "dungeon_name": "\u8ee2\u751f\u306e\u9593",
+            "end_timestamp": 1547089200,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547078400
+        },
+        {
+            "dungeon_name": "\u8d85\u7d76\u30e1\u30bf\u30c9\u30e9 \u964d\u81e8\uff01",
+            "end_timestamp": 1547100000,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547089200
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u9b54\u7a9f",
+            "end_timestamp": 1547110800,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547100000
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u907a\u8de1",
+            "end_timestamp": 1547110800,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547100000
+        },
+        {
+            "dungeon_name": "$d3423e$\u30b0\u30e9\u30c8 \u964d\u81e8\uff01",
+            "end_timestamp": 1547121600,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547110800
+        },
+        {
+            "dungeon_name": "\u8d85\u7d76\u30e1\u30bf\u30c9\u30e9 \u964d\u81e8\uff01",
+            "end_timestamp": 1547132400,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547121600
+        },
+        {
+            "dungeon_name": "\u30ec\u30a2\u30ad\u30e3\u30e9\u5927\u91cf\u767a\u751f\uff01",
+            "end_timestamp": 1547164800,
+            "group": "RED",
+            "server": "JP",
+            "start_timestamp": 1547154000
+        },
+        {
+            "dungeon_name": "$d3423e$\u30b0\u30e9\u30c8 \u964d\u81e8\uff01",
+            "end_timestamp": 1547078400,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547067600
+        },
+        {
+            "dungeon_name": "\u8d85\u7d76\u30e1\u30bf\u30c9\u30e9 \u964d\u81e8\uff01",
+            "end_timestamp": 1547089200,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547078400
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u9b54\u7a9f",
+            "end_timestamp": 1547100000,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547089200
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u907a\u8de1",
+            "end_timestamp": 1547100000,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547089200
+        },
+        {
+            "dungeon_name": "\u8ee2\u751f\u306e\u9593",
+            "end_timestamp": 1547110800,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547100000
+        },
+        {
+            "dungeon_name": "\u8d85\u7d76\u30e1\u30bf\u30c9\u30e9 \u964d\u81e8\uff01",
+            "end_timestamp": 1547121600,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547110800
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u9b54\u7a9f",
+            "end_timestamp": 1547132400,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547121600
+        },
+        {
+            "dungeon_name": "\u661f\u5b9d\u306e\u907a\u8de1",
+            "end_timestamp": 1547132400,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547121600
+        },
+        {
+            "dungeon_name": "\u8d85\u7d76\u30e1\u30bf\u30c9\u30e9 \u964d\u81e8\uff01",
+            "end_timestamp": 1547164800,
+            "group": "GREEN",
+            "server": "JP",
+            "start_timestamp": 1547154000
+        }
+    ]
+}
