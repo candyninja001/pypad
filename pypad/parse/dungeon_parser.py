@@ -60,7 +60,7 @@ class DungeonParser(JsonParser):
         return 'dungeons' in raw_data
 
     def version(self) -> int:
-        return 4
+        return 6
 
     def parse(self, raw_data: dict) -> dict:
         self._clear_reports()
