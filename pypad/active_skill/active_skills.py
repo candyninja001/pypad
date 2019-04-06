@@ -23,7 +23,7 @@ class ActiveSkills:
         self._raw_version = raw_skill_json['v']
         if dev:
             if self._raw_version != self._version:
-                print(f'Mismatched parsing version and raw data version ({self._version} vs {self._raw_version})')
+                print(f'Mismatched parsing version and raw data version for active skills ({self._version} vs {self._raw_version})')
         
         self._active_skills = {}
         for i,raw_skill in enumerate(raw_skill_json['skill']):

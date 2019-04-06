@@ -13,7 +13,7 @@ class Cards:
             cls._loaded_versions[region] = raw_card_json['v']
             if dev:
                 if cls._loaded_versions[region] != cls._qualified_version:
-                    print(f'Mismatched parsing version and raw data version ({cls._qualified_version} vs {cls._loaded_versions[region]})')
+                    print(f'Mismatched parsing version and raw data version for cards ({cls._qualified_version} vs {cls._loaded_versions[region]})')
             cls._loaded_cards[region] = {}
             for raw_card in raw_card_json['card']:
                 card = Card(raw_card, region)
