@@ -1,5 +1,8 @@
 pypad/data/raw
 
+.vscode
+/*.py
+
 # Python related ignores
 
 # Byte-compiled / optimized / DLL files
