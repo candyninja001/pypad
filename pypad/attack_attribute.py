@@ -7,8 +7,6 @@ class AttackAttribute(Enum):
     WOOD = 2
     LIGHT = 3
     DARK = 4
-    ATTRIBUTELESS_FIXED = 5 
-    ATTRIBUTELESS_REDUCED = 6
 
     def __ge__(self, other):
         if type(other) == AttackAttribute:
@@ -45,3 +43,13 @@ class AttackAttribute(Enum):
                 return True
             return self.value < other.value
         return NotImplemented
+
+    @classmethod
+    def _missing_(cls, value):
+        return AttackAttribute.NONE
+
+all_attr = (AttackAttribute.FIRE,
+            AttackAttribute.WATER,
+            AttackAttribute.WOOD,
+            AttackAttribute.LIGHT,
+            AttackAttribute.DARK)

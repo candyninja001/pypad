@@ -1,10 +1,11 @@
 from enum import Enum
 
 class Awakening(Enum):
+    UNKNOWN = -1
     NONE = 0
     ENHANCED_HP = 1
     ENHANCED_ATTACK = 2
-    ENHANCED_HEAL = 3
+    ENHANCED_RECOVERY = 3
     REDUCE_FIRE_DAMAGE = 4
     REDUCE_WATER_DAMAGE = 5
     REDUCE_WOOD_DAMAGE = 6
@@ -48,7 +49,7 @@ class Awakening(Enum):
     GUARD_BREAK = 44
     BONUS_ATTACK = 45
     ENHANCED_TEAM_HP = 46
-    ENHANCED_TEAM_RCV = 47
+    ENHANCED_TEAM_RECOVERY = 47
     VOID_DAMAGE_PIERCER = 48
     AWOKEN_ASSIST = 49
     SUPER_BONUS_ATTACK = 50
@@ -66,3 +67,10 @@ class Awakening(Enum):
     COMBO_ORBS = 62
     SKILL_VOICE = 63
     DUNGEON_BONUS = 64
+    REDUCED_HP = 65
+    REDUCED_ATTACK = 66
+    REDUCED_RECOVERY = 67
+
+    @classmethod
+    def _missing_(cls, value):
+        return Awakening.UNKNOWN

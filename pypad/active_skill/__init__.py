@@ -1,63 +1,87 @@
 from ..region import Region
-from ..read_only_property import read_only_property
+from ..parser.common import defaultlist
+from collections import defaultdict
+
+from .interfaces.multi_skill_asi import MultiSkillASI
+
 
 class ActiveSkill:
+    _handle_types = set()
+
     @classmethod
-    def _get_skill_types(cls) -> [int]:
-        return []
+    def handles(cls, raw_skill) -> bool:
+        return len(raw_skill) > 6
 
-    def __init__(self, active_skill_id: int, name: str, description: str, internal_skill_type: int, max_skill: int, base_cooldown: int, args):
-        self._id = active_skill_id
-        self._name = name
-        self._description = description
-        self._internal_skill_type = internal_skill_type
-        self._max_skill = max_skill
-        self._base_cooldown = base_cooldown
+    def __init__(self, skill_id, raw_skill, region):
+        self._region = region
+        self.id = skill_id
+        self.name = raw_skill[0]
+        self.description = raw_skill[1]
+        self.internal_skill_type = raw_skill[2]
+        self.max_skill = raw_skill[3]
+        self.base_cooldown = raw_skill[4]
+        self.args = defaultlist(int, raw_skill[6:])
+        self.parse_args()
 
-    def to_json(self, localization_region=None) -> dict:
+    def parse_args(self):
+        pass
+
+    def to_json(self, localize=False) -> dict:
         skill_json = {
-            'id': self._id,
-            'name': self._name,
-            'card_description': self._description,
+            'id': self.id,
+            'name': self.name,
+            'card_description': self.description,
             'type': self.active_skill_type,
-            'max_skill': self._max_skill,
-            'base_cooldown': self._base_cooldown,
-            'args': {},
+            'max_skill': self.max_skill,
+            'base_cooldown': self.base_cooldown,
+            'args': self.args_to_json(),
         }
-        if localization_region != None and type(localization_region) == Region:
-            skill_json['localization'] = self.localize(localization_region)
+        if localize:
+            skill_json['localization'] = self.localize()
         return skill_json
 
-    def localize(self, region=Region.NA) -> str:
+    def args_to_json(self) -> dict:
+        return {'arg_'+str(i):self.args[i] for i in range(len(self.args))}
+
+    def localize(self) -> str:
         return ''
-
-    def simulate(self, dungeon_run: 'DungeonRun'):
-        raise NotImplementedError
-
-    @read_only_property
-    def id(self):
-        return self._id
-
-    @read_only_property
-    def description(self):
-        return self._description
-
-    @read_only_property
-    def internal_skill_type(self):
-        return self._internal_skill_type
         
-    @read_only_property
+    @property
     def active_skill_type(self):
-        return 'active_skill_type_' + str(self._internal_skill_type)
+        return 'active_skill_type_' + str(self.internal_skill_type)
 
-    @read_only_property
-    def max_skill(self):
-        return self._max_skill
-
-    @read_only_property
-    def base_cooldown(self):
-        return self._base_cooldown
-
-    @read_only_property
+    @property
     def max_skill_cooldown(self):
-        return self._base_cooldown - self._max_skill + 1
+        return self.base_cooldown - self.max_skill + 1
+
+
+class ActiveSkillBook:
+    def __init__(self):
+        self._skills = {}
+        self._sub_skill_uses = defaultdict(set)
+
+    def _register(self, active_skill):
+        if active_skill != None:
+            self._skills[active_skill.id] = active_skill
+            if isinstance(active_skill, MultiSkillASI):
+                for sub_skill_id in active_skill.get_sub_skills():
+                    self._sub_skill_uses[sub_skill_id].add(active_skill.id)
+
+    def __contains__(self, active_skill_id) -> bool:
+        return active_skill_id in self._skills
+    
+    def __getitem__(self, active_skill_id) -> ActiveSkill:
+        return self._skills[active_skill_id]
+
+    def __iter__(self):
+        return iter(self._skills.values())
+
+    def __len__(self):
+        return len(self._skills)
+
+    # Returns the set of multi-skills including sub_skill_id as a sub-skill
+    def sub_skill_instances(self, sub_skill_id):
+        return {self._skills[as_id] for as_id in self._sub_skill_uses[sub_skill_id]}
+
+    def to_json(self):
+        return {str(skill_id):skill.to_json() for skill_id,skill in self._skills.items()}

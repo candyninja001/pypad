@@ -1,0 +1,27 @@
+from . import ActiveSkill 
+from ..skill_loader import SkillLoader
+from ..region import Region
+
+class NoSkyfallAS(ActiveSkill):
+    _handle_types = {184}
+
+    def parse_args(self):
+        self.duration = self.args[0]
+
+    def args_to_json(self):
+        return {
+            'duration': self.duration,
+        }
+
+    def localize(self):
+        localization = 'For 1 turn,' if self.duration == 1 else f'For {self.duration} turns,'
+        localization += ' no skyfalls will appear'
+        return localization
+        
+    @property
+    def active_skill_type(self):
+        return 'no_skyfall'
+
+
+# Register the active skill
+SkillLoader._register_active_skill_class(NoSkyfallAS)
