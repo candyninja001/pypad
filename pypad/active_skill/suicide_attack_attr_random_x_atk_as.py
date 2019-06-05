@@ -1,9 +1,10 @@
 from . import ActiveSkill 
+from .interfaces.attack_asi import AttackASI, AttackDamageCalculationType
 from ..skill_loader import SkillLoader
 from ..region import Region
 from ..attack_attribute import AttackAttribute
 
-class SuicideAttackAttrRandomXatkAS(ActiveSkill):
+class SuicideAttackAttrRandomXatkAS(ActiveSkill, AttackASI):
     _handle_types = {84,85}
 
     def parse_args(self):
@@ -31,6 +32,25 @@ class SuicideAttackAttrRandomXatkAS(ActiveSkill):
     @property
     def active_skill_type(self):
         return 'suicide_attack_attr_random_x_atk'
+
+    # Interface methods
+    def is_attack_mass_attack(self) -> bool:
+        return self.mass_attack
+
+    def get_attack_damage_calculation_type(self) -> AttackDamageCalculationType:
+        return AttackDamageCalculationType.RANDOM_X_ATK
+
+    def get_attack_multipliers(self) -> (float,float):
+        return (self.minimum_multiplier,self.maximum_multiplier)
+
+    def get_attack_fixed_attack_attribute(self) -> AttackAttribute:
+        return self.attribute
+
+    def is_attack_suicide(self) -> bool:
+        return self.remaining_hp_percent < 1.0
+
+    def get_attack_suicide_percentage(self) -> float:
+        return self.remaining_hp_percent
 
 
 # Register the active skill

@@ -1,9 +1,10 @@
 from . import ActiveSkill
+from .interfaces.attack_asi import AttackASI, AttackDamageCalculationType
 from ..skill_loader import SkillLoader
 from ..attack_attribute import AttackAttribute
 from ..region import Region
 
-class AttackAttrXatkAS(ActiveSkill):
+class AttackAttrXatkAS(ActiveSkill, AttackASI):
     _handle_types = {0,37}
 
     @classmethod
@@ -28,6 +29,20 @@ class AttackAttrXatkAS(ActiveSkill):
     @property
     def active_skill_type(self):
         return 'attack_attr_x_atk'
+
+    # Interface methods
+    def is_attack_mass_attack(self) -> bool:
+        return self.mass_attack
+
+    def get_attack_damage_calculation_type(self) -> AttackDamageCalculationType:
+        return AttackDamageCalculationType.X_ATK
+
+    def get_attack_multipliers(self) -> (float,float):
+        return (self.multiplier,self.multiplier)
+
+    def get_attack_fixed_attack_attribute(self) -> AttackAttribute:
+        return self.attribute
+
 
 # Register the active skill
 SkillLoader._register_active_skill_class(AttackAttrXatkAS)
