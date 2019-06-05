@@ -1,5 +1,5 @@
 from ..region import Region
-from ..parser.common import defaultlist
+from ..common import defaultlist
 from collections import defaultdict
 
 from .interfaces.multi_skill_asi import MultiSkillASI
