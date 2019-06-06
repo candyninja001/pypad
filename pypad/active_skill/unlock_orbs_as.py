@@ -1,6 +1,5 @@
 from . import ActiveSkill 
 from ..skill_loader import SkillLoader
-from ..region import Region
 
 class UnlockOrbsAS(ActiveSkill):
     _handle_types = {172}

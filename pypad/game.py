@@ -110,6 +110,10 @@ class Game:
     def evolutions(self) -> EvolutionManager:
         return self.__class__._loaded_regions[self._region]['evolution_manager']
 
+    @property
+    def dungeons(self) -> DungeonBook:
+        return self.__class__._loaded_regions[self._region]['dungeon_book']
+
     def to_json(self) -> dict:
         return {
             'cards': self.__class__._loaded_regions[self._region]['monster_book'].to_json(),
@@ -117,6 +121,7 @@ class Game:
             'evolutions': self.__class__._loaded_regions[self._region]['evolution_manager'].to_json(),
             'active_skills': self.__class__._loaded_regions[self._region]['active_skills_book'].to_json(),
             'leader_skills': self.__class__._loaded_regions[self._region]['leader_skills_book'].to_json(),
+            'dungeons': self.__class__._loaded_regions[self._region]['dungeon_book'].to_json(),
         }
 
 
