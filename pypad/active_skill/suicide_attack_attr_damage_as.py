@@ -1,10 +1,11 @@
 from . import ActiveSkill
 from .interfaces.attack_asi import AttackASI, AttackDamageCalculationType
+from .interfaces.suicide_asi import SuicideASI
 from ..skill_loader import SkillLoader
 from ..region import Region
 from ..attack_attribute import AttackAttribute
 
-class SuicideAttackAttrDamageAS(ActiveSkill, AttackASI):
+class SuicideAttackAttrDamageAS(ActiveSkill, AttackASI, SuicideASI):
     _handle_types = {86,87}
 
     def parse_args(self):
@@ -44,10 +45,10 @@ class SuicideAttackAttrDamageAS(ActiveSkill, AttackASI):
     def get_attack_fixed_attack_attribute(self) -> AttackAttribute:
         return self.attribute
 
-    def is_attack_suicide(self) -> bool:
+    def is_suicide(self) -> bool:
         return self.remaining_hp_percent < 1.0
 
-    def get_attack_suicide_percentage(self) -> float:
+    def get_suicide_percentage(self) -> float:
         return self.remaining_hp_percent
 
 

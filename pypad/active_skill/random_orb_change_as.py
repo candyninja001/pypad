@@ -1,10 +1,12 @@
 from . import ActiveSkill 
+from .interfaces.orb_consumer_asi import OrbConsumerASI
+from .interfaces.orb_generator_asi import OrbGeneratorASI
 from ..skill_loader import SkillLoader
 from ..region import Region
 from ..orb_attribute import OrbAttribute
 from ..common import binary_to_list, iterable_to_string
 
-class RandomOrbChangeAS(ActiveSkill):
+class RandomOrbChangeAS(ActiveSkill, OrbGeneratorASI, OrbConsumerASI):
     _handle_types = {154}
 
     def parse_args(self):
@@ -25,6 +27,13 @@ class RandomOrbChangeAS(ActiveSkill):
     @property
     def active_skill_type(self):
         return 'random_orb_change'
+
+    # Interface methods
+    def does_orb_generator_create_orb_attribute(self, orb_attribute: OrbAttribute) -> bool:
+        return orb_attribute in self.to_orbs
+    
+    def does_orb_consumer_remove_orb_attribute(self, orb_attribute: OrbAttribute) -> bool:
+        return orb_attribute in self.from_orbs
 
 
 # Register the active skill

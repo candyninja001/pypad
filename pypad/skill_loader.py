@@ -92,6 +92,7 @@ from .active_skill.move_time_flat_as import MoveTimeFlatAS
 from .active_skill.move_time_percentage_as import MoveTimePercentageAS
 from .active_skill.multihit_laser_as import MultihitLaserAS
 from .active_skill.no_skyfall_as import NoSkyfallAS
+from .active_skill.pierce_damage_void_as import PierceDamageVoidAS
 from .active_skill.poison_as import PoisonAS
 from .active_skill.random_orb_change_as import RandomOrbChangeAS
 from .active_skill.recover_as import RecoverAS
@@ -99,6 +100,7 @@ from .active_skill.row_change_as import RowChangeAS
 from .active_skill.single_orb_change_as import SingleOrbChangeAS
 from .active_skill.skill_charge_as import SkillChargeAS
 from .active_skill.spawn_orbs_as import SpawnOrbsAS
+from .active_skill.suicide_as import SuicideAS
 from .active_skill.suicide_attack_attr_damage_as import SuicideAttackAttrDamageAS
 from .active_skill.suicide_attack_attr_random_x_atk_as import SuicideAttackAttrRandomXatkAS
 from .active_skill.type_atk_boost_as import TypeATKBoostAS

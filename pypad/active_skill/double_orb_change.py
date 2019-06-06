@@ -1,9 +1,11 @@
 from . import ActiveSkill
+from .interfaces.orb_consumer_asi import OrbConsumerASI
+from .interfaces.orb_generator_asi import OrbGeneratorASI
 from ..skill_loader import SkillLoader
 from ..region import Region
 from ..orb_attribute import OrbAttribute
 
-class DoubleOrbChangeAS(ActiveSkill):
+class DoubleOrbChangeAS(ActiveSkill, OrbGeneratorASI, OrbConsumerASI):
     _handle_types = {20}
 
     def parse_args(self):
@@ -26,6 +28,13 @@ class DoubleOrbChangeAS(ActiveSkill):
     @property
     def active_skill_type(self):
         return 'double_orb_change'
+
+    # Interface methods
+    def does_orb_generator_create_orb_attribute(self, orb_attribute: OrbAttribute) -> bool:
+        return orb_attribute == self.to_orb_1 or orb_attribute == self.to_orb_2
+    
+    def does_orb_consumer_remove_orb_attribute(self, orb_attribute: OrbAttribute) -> bool:
+        return orb_attribute == self.from_orb_1 or orb_attribute == self.from_orb_2
 
 
 # Register the active skill

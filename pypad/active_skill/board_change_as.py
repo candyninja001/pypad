@@ -1,10 +1,11 @@
 from . import ActiveSkill
+from .interfaces.orb_generator_asi import OrbGeneratorASI
 from ..skill_loader import SkillLoader
 from ..region import Region
 from ..orb_attribute import OrbAttribute
 from ..common import iterable_to_string
 
-class BoardChangeAS(ActiveSkill):
+class BoardChangeAS(ActiveSkill, OrbGeneratorASI):
     _handle_types = {71}
 
     def parse_args(self):
@@ -22,6 +23,10 @@ class BoardChangeAS(ActiveSkill):
     @property
     def active_skill_type(self):
         return 'board_change'
+
+    # Interface methods
+    def does_orb_generator_create_orb_attribute(self, orb_attribute: OrbAttribute) -> bool:
+        return orb_attribute in self.orbs
 
 
 # Register the active skill

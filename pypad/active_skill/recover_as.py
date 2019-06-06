@@ -46,6 +46,8 @@ class RecoverAS(ActiveSkill):
             'percentage_max_hp': self.percentage_max_hp,
             'rcv_multiplier_as_hp': self.rcv_multiplier_as_hp,
             'team_rcv_multiplier_as_hp': self.team_rcv_multiplier_as_hp,
+            'auto_recover_buff_duration': self.auto_recover_buff_duration,
+            'auto_recover_buff_percentage_max_hp': self.auto_recover_buff_percentage_max_hp,
         }
 
     def localize(self):

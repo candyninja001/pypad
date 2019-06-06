@@ -55,11 +55,3 @@ class AttackASI(abc.ABC):
     # What attribute enemy can be targeted with this attack, NONE if all
     def get_attack_target_attributes(self) -> AttackAttribute:
         return AttackAttribute.NONE
-
-    # Does the attack reduce player HP
-    def is_attack_suicide(self) -> bool:
-        return False
-
-    # What percentage of player HP remains after attacking
-    def get_attack_suicide_percentage(self) -> float:
-        return 1.0

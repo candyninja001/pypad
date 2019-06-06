@@ -1,10 +1,11 @@
 from . import ActiveSkill 
+from .interfaces.orb_generator_asi import OrbGeneratorASI
 from ..skill_loader import SkillLoader
 from ..region import Region
 from ..orb_attribute import OrbAttribute
 from ..common import binary_to_list, iterable_to_string
 
-class SpawnOrbsAS(ActiveSkill):
+class SpawnOrbsAS(ActiveSkill, OrbGeneratorASI):
     _handle_types = {141}
 
     def parse_args(self):
@@ -33,6 +34,10 @@ class SpawnOrbsAS(ActiveSkill):
     @property
     def active_skill_type(self):
         return 'spawn_orbs'
+
+    # Interface methods
+    def does_orb_generator_create_orb_attribute(self, orb_attribute: OrbAttribute) -> bool:
+        return orb_attribute in self.orbs
 
 
 # Register the active skill
