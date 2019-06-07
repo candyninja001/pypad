@@ -43,7 +43,8 @@ class Player:
         # player_json['mever'] - guess is version for other jsons
 
         self.box_capacity = player_json['cardMax']
-        self.monster_box = MonsterBox(self.box_capacity, player_json['card'])
+        self.monster_box = None # MonsterBox(self.box_capacity, player_json['card'])  # TODO Fix for both
+        self.materials_box = None # MonsterBox(self.box_capacity, player_json['card'])
         self.name = player_json['name']
         self.rank = player_json['lv']
         self.experience = player_json['exp']
