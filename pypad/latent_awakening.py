@@ -1,7 +1,9 @@
 from enum import Enum
 from .monster_type import MonsterType
+from .dev import Dev
 
 class LatentAwakening(Enum):
+    UNKNOWN = (-1, 2, [])
     NONE = (0, 1, [])
     IMPROVED_HP = (1, 1, [])
     IMPROVED_ATTACK = (2, 1, [])
@@ -36,12 +38,6 @@ class LatentAwakening(Enum):
     WOOD_DAMAGE_REDUCTION_PLUS = (34, 2, [])
     LIGHT_DAMAGE_REDUCTION_PLUS = (35, 2, [])
     DARK_DAMAGE_REDUCTION_PLUS = (36, 2, [])
-    UNKNOWN_37 = (37, 2, [])
-    UNKNOWN_38 = (38, 2, [])
-    UNKNOWN_39 = (39, 2, [])
-    UNKNOWN_40 = (40, 2, [])
-    UNKNOWN_41 = (41, 2, [])
-    UNKNOWN_42 = (42, 2, [])
 
     def __new__(cls, value, slots=None, types=None):
         if slots == None and types == None: # value lookup instead of creation
@@ -52,6 +48,11 @@ class LatentAwakening(Enum):
         latent._slots = slots
         latent._types = types
         return latent
+
+    @classmethod
+    def _missing_(cls, value):
+        Dev.log(f'Unknown latent awakening: {value}')
+        return LatentAwakening.UNKNOWN
 
     def slots(self) -> int:
         return self._slots

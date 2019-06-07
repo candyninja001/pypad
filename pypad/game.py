@@ -1,3 +1,4 @@
+from .dev import Dev
 from .region import Region
 from .download_manager import DownloadManager
 from .player import Player, PlayerManager
@@ -38,43 +39,66 @@ class Game:
         self.__class__._loaded_regions[self._region]['active_skill_book'] = ActiveSkillBook()
         self.__class__._loaded_regions[self._region]['leader_skill_book'] = LeaderSkillBook()
 
+        Dev.log('Starting to parse skills')
+
         raw_skill_json = self.__class__._loaded_regions[self._region]['download_manager'].get_game_file('download_skill_data.json')
+
         raw_skill_version = raw_skill_json['v']
         if self._qualified_skill_version < raw_skill_version:
-            print(f'[Warning] Skill parsing version outdated ({self._qualified_skill_version} vs {raw_skill_version})')
+            Dev.log(f'Skill parsing version outdated ({self._qualified_skill_version} vs {raw_skill_version})')
 
+        Dev.timer_start()
         for skill_id,raw_skill in enumerate(raw_skill_json['skill']):
             self.__class__._loaded_regions[self._region]['active_skill_book']._register(SkillLoader.load_active_skill(skill_id,raw_skill,self._region))
             self.__class__._loaded_regions[self._region]['leader_skill_book']._register(SkillLoader.load_leader_skill(skill_id,raw_skill,self._region))
+        Dev.timer_end()
+        
+        Dev.log(f'Finished parsing skills, took {Dev.timer_read():2f} seconds')
 
 
         # Enemy Skill data
         self.__class__._loaded_regions[self._region]['enemy_skill_data'] = None
+
 
         # Card, Enemy, and Evolution data
         self.__class__._loaded_regions[self._region]['monster_book'] = MonsterBook()
         self.__class__._loaded_regions[self._region]['enemy_monster_book'] = EnemyMonsterBook()
         self.__class__._loaded_regions[self._region]['evolution_manager'] = EvolutionManager()
 
+        Dev.log('Starting to parse cards')
+
         raw_card_json = self.__class__._loaded_regions[self._region]['download_manager'].get_game_file('download_card_data.json')
+
         raw_card_version = raw_card_json['v']
         if self._qualified_card_version < raw_card_version:
-            print(f'[Warning] Card parsing version outdated ({self._qualified_card_version} vs {raw_card_version})')
+            Dev.log(f'Card parsing version outdated ({self._qualified_card_version} vs {raw_card_version})')
 
+        Dev.timer_start()
         for raw_card in raw_card_json['card']:
             self.__class__._loaded_regions[self._region]['monster_book']._register(CardData(raw_card))
             self.__class__._loaded_regions[self._region]['enemy_monster_book']._register(EnemyData(raw_card))
             self.__class__._loaded_regions[self._region]['evolution_manager']._register(Evolution(raw_card))
+        Dev.timer_end()
+        
+        Dev.log(f'Finished parsing cards, took {Dev.timer_read():2f} seconds')
+
 
         # Dungeon data
         self.__class__._loaded_regions[self._region]['dungeon_book'] = DungeonBook()
 
+        Dev.log('Starting to parse dungeons')
+
         raw_dungeon_json = self.__class__._loaded_regions[self._region]['download_manager'].get_game_file('download_dungeon_data.json')
+
         raw_dungeon_version = raw_dungeon_json['v']
         if self._qualified_dungeon_version < raw_dungeon_version:
-            print(f'[Warning] Dungeon parsing version outdated ({self._qualified_dungeon_version} vs {raw_dungeon_version})')
+            Dev.log(f'Dungeon parsing version outdated ({self._qualified_dungeon_version} vs {raw_dungeon_version})')
 
+        Dev.timer_start()
         self.__class__._loaded_regions[self._region]['dungeon_book']._load(raw_dungeon_json['dungeons'])
+        Dev.timer_end()
+        
+        Dev.log(f'Finished parsing dungeons, took {Dev.timer_read():2f} seconds')
 
     
     # Adds a player by their download data

@@ -1,7 +1,9 @@
+from .dev import Dev
 from .active_skill import ActiveSkill
 from .leader_skill import LeaderSkill
 from collections import defaultdict
 from .common import defaultlist
+from .obsolete_skill import ObsoleteSkill
 
 class SkillLoader:
     _registered_active_skill_classes = defaultdict(set)
@@ -22,13 +24,15 @@ class SkillLoader:
         if len(cls._registered_active_skill_classes[raw_skill[2]]) == 0:
             # no classes are registered
             if len(cls._registered_leader_skill_classes[raw_skill[2]]) == 0:
-                print(f'[Warning] Unhandled skill [{skill_id}:t_{raw_skill[2]}]')
+                Dev.log(f'Unhandled skill [{skill_id}:t_{raw_skill[2]}]')
             return None
         handle_classes = [c for c in cls._registered_active_skill_classes[raw_skill[2]] if c.handles(defaultlist(int, raw_skill))]
         if len(handle_classes) == 1:
+            if type(handle_classes[0]) == ObsoleteSkill:
+                return None
             return handle_classes[0](skill_id, raw_skill, region)
         if len(handle_classes) > 1:
-            print(f'[Warning] Active skill [{skill_id}] applies to two or more classes {repr(handle_classes)}, skipping')
+            Dev.log(f'Active skill [{skill_id}] applies to two or more classes {repr(handle_classes)}, skipping')
             return None
         return None
 
@@ -37,16 +41,22 @@ class SkillLoader:
         if len(cls._registered_leader_skill_classes[raw_skill[2]]) == 0:
             # no classes are registered
             if len(cls._registered_active_skill_classes[raw_skill[2]]) == 0:
-                print(f'[Warning] Unhandled skill [{skill_id}:t_{raw_skill[2]}] -> {repr(raw_skill[6:])}')
+                Dev.log(f'Unhandled skill [{skill_id}:t_{raw_skill[2]}] -> {repr(raw_skill[6:])}')
             return None
         handle_classes = [c for c in cls._registered_leader_skill_classes[raw_skill[2]] if c.handles(defaultlist(int, raw_skill))]
         if len(handle_classes) == 1:
+            if type(handle_classes[0]) == ObsoleteSkill:
+                return None
             return handle_classes[0](skill_id, raw_skill, region)
         if len(handle_classes) > 1:
-            print(f'[Warning] Leader skill [{skill_id}] applies to two or more classes {repr(handle_classes)}, skipping')
+            Dev.log(f'Leader skill [{skill_id}] applies to two or more classes {repr(handle_classes)}, skipping')
             return None
         return None
 
+
+# Register the obsolete skill
+SkillLoader._register_active_skill_class(ObsoleteSkill)
+SkillLoader._register_leader_skill_class(ObsoleteSkill)
 
 # Import all active skill classes for loading
 

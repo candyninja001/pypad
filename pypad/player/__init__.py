@@ -1,3 +1,4 @@
+from ..dev import Dev
 from .friend import Friend
 from .monster_box import MonsterBox
 from .team import Team
@@ -11,7 +12,7 @@ class Player:
         player_json = get_json(player_download_json_path)
 
         if (player_json['res'] != 0):
-            print(f"Player download json has bad response code: {player_json['res']}")
+            Dev.log(f"Player download json has bad response code: {player_json['res']}")
 
         self.max_friend_count = player_json['friendMax']
         self.friends = {friend_raw[1]:Friend(friend_raw, self.region) for friend_raw in player_json['friends']}

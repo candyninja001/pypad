@@ -1,11 +1,12 @@
 from enum import Enum
+from .dev import Dev
 
 class Collab(Enum):
+    UNKNOWN = -1
     NONE = 0
     RAGNAROK_ONLINE = 1
     TAIKO_NO_TATSUJIN = 2
     EMIL_CHRONICLE_ONLINE = 3
-    UNKNOWN_COLLAB_4 = 4
     GUNMA_NO_YABOU = 5
     CRYSTAL_DEFENDER = 6
     FAMITSU = 7
@@ -43,8 +44,6 @@ class Collab(Enum):
     CHIBI_1 = 39 # first round chibis - three kingdoms series
     FIST_OF_THE_NORTH_STAR = 40
     CHIBI_2 = 41 # second round chibis
-    UNKNOWN_COLLAB_42 = 42
-    UNKNOWN_COLLAB_43 = 43
     CHIBI_3 = 44 # third round chibis
     FINAL_FANTASY = 45
     GHOST_IN_THE_SHELL = 46
@@ -54,8 +53,6 @@ class Collab(Enum):
     SHONEN_SUNDAY = 50
     CROWS_X_WORST = 51 # TODO VERIFY NO OVERLAP WITH VOLTRON
     BLEACH = 52
-    UNKNOWN_COLLAB_53 = 53
-    UNKNOWN_COLLAB_54 = 54
     ACE_ATTORNEY = 55
     RUROUNI_KENSHIN = 56
     PEPPER = 57
@@ -65,7 +62,6 @@ class Collab(Enum):
     MONSTER_HUNTER = 61
     KAIBUTSU_KUN = 62
     VOLTRON = 63 # TODO VERIFY NO OVERLAP WITH CROW X WORST
-    UNKNOWN_COLLAB_64 = 64
     FULLMETAL_ALCHEMIST = 65
     KING_OF_FIGHTERS = 66
     YU_YU_HAKUSHO = 67
@@ -82,15 +78,10 @@ class Collab(Enum):
     YOKAI_WATCH_W = 78
     FATE_STAY_NIGHT = 79
     STREET_FIGHTER_V = 80
-    UNKNOWN_COLLAB_81 = 81
-    UNKNOWN_COLLAB_82 = 82
-    UNKNOWN_COLLAB_83 = 83
-    UNKNOWN_COLLAB_84 = 84
-    UNKNOWN_COLLAB_85 = 85
-    UNKNOWN_COLLAB_86 = 86
-    UNKNOWN_COLLAB_87 = 87
-    UNKNOWN_COLLAB_88 = 88
-    UNKNOWN_COLLAB_89 = 89
-    UNKNOWN_COLLAB_90 = 90
     ERROR_999 = 999
     DRAGONBOUNDS_AND_DRAGON_CALLERS = 10001
+
+    @classmethod
+    def _missing_(cls, value):
+        Dev.log(f'Unknown collab: {value}')
+        return Collab.UNKNOWN

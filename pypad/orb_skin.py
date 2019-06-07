@@ -1,6 +1,8 @@
 from enum import Enum
+from .dev import Dev
 
 class OrbSkin(Enum):
+    UNKNOWN = -1
     NORMAL_ORBS = 0
     FANCY_ORBS = 1
     VALKYRIE_ORBS = 2
@@ -15,9 +17,8 @@ class OrbSkin(Enum):
     YU_YU_HAKUSHO_ORBS = 11
     MONSTER_HUNTER_ORBS = 12
     JAPANESE_GODS_ORBS = 13
-    UNKNOWN_ORBS_14 = 14
-    UNKNOWN_ORBS_15 = 15
-    UNKNOWN_ORBS_16 = 16
-    UNKNOWN_ORBS_17 = 17
-    UNKNOWN_ORBS_18 = 18
-    UNKNOWN_ORBS_19 = 19
+
+    @classmethod
+    def _missing_(cls, value):
+        Dev.log(f'Unknown orb skin: {value}')
+        return OrbSkin.UNKNOWN

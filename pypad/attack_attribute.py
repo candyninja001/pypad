@@ -1,6 +1,8 @@
 from enum import Enum
+from .dev import Dev
 
 class AttackAttribute(Enum):
+    UNKNOWN = -2
     NONE = -1
     FIRE = 0
     WATER = 1
@@ -46,7 +48,8 @@ class AttackAttribute(Enum):
 
     @classmethod
     def _missing_(cls, value):
-        return AttackAttribute.NONE
+        Dev.log(f'Unknown attack attribute: {value}')
+        return AttackAttribute.UNKNOWN
 
 all_attr = (AttackAttribute.FIRE,
             AttackAttribute.WATER,

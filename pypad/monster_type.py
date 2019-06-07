@@ -1,4 +1,5 @@
 from enum import Enum
+from .dev import Dev
 
 class MonsterType(Enum):
     NONE = -1
@@ -14,3 +15,8 @@ class MonsterType(Enum):
     AWAKEN_MATERIAL = 12
     ENHANCE_MATERIAL = 14
     REDEEMABLE_MATERIAL = 15
+
+    @classmethod
+    def _missing_(cls, value):
+        Dev.log(f'Unknown orb skin: {value}')
+        return OrbSkin.UNKNOWN

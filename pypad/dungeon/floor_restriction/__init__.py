@@ -1,3 +1,4 @@
+from ...dev import Dev
 from collections import defaultdict
 from ...common import defaultlist
 
@@ -37,14 +38,14 @@ class FloorRestrictionLoader:
     @classmethod
     def _register_floor_restriction_class(cls, floor_restriction_class):
         if floor_restriction_class._handle_type in cls._registered_floor_restriction_classes:
-            print(f'[Warning] Duplicate floor restriction type attempted to register ({floor_restriction_class._handle_type})')
+            Dev.log(f'Duplicate floor restriction type attempted to register ({floor_restriction_class._handle_type})')
         cls._registered_floor_restriction_classes[floor_restriction_class._handle_type] = floor_restriction_class
 
     @classmethod
     def load_floor_restriction(cls, restriction_type, args):
         if restriction_type in cls._registered_floor_restriction_classes:
             return cls._registered_floor_restriction_classes[restriction_type](defaultlist(int,args))
-        print(f'[Warning] Floor restriction type={restriction_type} not handled, skipping')
+        Dev.log(f'Floor restriction type={restriction_type} not handled, skipping')
         return None
 
 

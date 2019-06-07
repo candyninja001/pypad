@@ -1,4 +1,5 @@
 from enum import Enum
+from .dev import Dev
 
 class Awakening(Enum):
     UNKNOWN = -1
@@ -73,4 +74,5 @@ class Awakening(Enum):
 
     @classmethod
     def _missing_(cls, value):
+        Dev.log(f'Unknown awakening: {value}')
         return Awakening.UNKNOWN

@@ -1,3 +1,4 @@
+from ..dev import Dev
 from . import ActiveSkill
 from ..skill_loader import SkillLoader
 from ..region import Region
@@ -11,7 +12,7 @@ class ChangeSkyfallAS(ActiveSkill):
         self.orbs = tuple(OrbAttribute(o) for o in binary_to_list(self.args[0]))
         self.duration = self.args[1]
         if self.args[1] != self.args[2]:
-            print(f'[Warning] unexpected behavior in ChangeSkyfallAS [{self.id}]')
+            Dev.log(f'[Warning] unexpected behavior in ChangeSkyfallAS [{self.id}]')
         self.rate_increase = self.args[3] / 100
 
     def args_to_json(self):

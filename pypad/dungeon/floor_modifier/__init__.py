@@ -1,4 +1,5 @@
 from collections import defaultdict
+from ...dev import Dev
 
 class FloorModifier:
     @classmethod
@@ -50,9 +51,9 @@ class FloorModifierLoader:
                 return None
             return fm
         if len(handle_classes) > 1:
-            print(f'[Warning] Floor modifier "{name}":"{value}" applies to two or more classes, skipping')
+            Dev.log(f'Floor modifier "{name}":"{value}" applies to two or more classes, skipping')
             return None
-        print(f'[Warning] Floor modifier "{name}":"{value}" not handled, skipping')
+        Dev.log(f'Floor modifier "{name}":"{value}" not handled, skipping')
         return None
 
 from .obsolete_fm import ObsoleteFM

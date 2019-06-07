@@ -1,3 +1,4 @@
+from ..dev import Dev
 from . import ActiveSkill 
 from ..skill_loader import SkillLoader
 from ..region import Region
@@ -12,7 +13,7 @@ class VoidAbsorbAS(ActiveSkill):
         self.damage_absorb = self.args[3] == 1
 
         if self.args[2] != 0:
-            print(f'[VoidAbsorbAS] unexpected args[2]: {self.args[2]}')
+            Dev.log(f'[VoidAbsorbAS] unexpected args[2]: {self.args[2]}')
 
     def args_to_json(self):
         return {
