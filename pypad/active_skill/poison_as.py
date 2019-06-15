@@ -1,6 +1,5 @@
 from . import ActiveSkill 
 from ..skill_loader import SkillLoader
-from ..region import Region
 
 class PoisonAS(ActiveSkill):
     _handle_types = {4}

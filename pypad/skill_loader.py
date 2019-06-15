@@ -106,6 +106,7 @@ from .active_skill.pierce_damage_void_as import PierceDamageVoidAS
 from .active_skill.poison_as import PoisonAS
 from .active_skill.random_orb_change_as import RandomOrbChangeAS
 from .active_skill.recover_as import RecoverAS
+from .active_skill.reduce_unmatchable_debuff_as import ReduceUnmatchableDebuffAS
 from .active_skill.row_change_as import RowChangeAS
 from .active_skill.single_orb_change_as import SingleOrbChangeAS
 from .active_skill.skill_charge_as import SkillChargeAS
