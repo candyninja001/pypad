@@ -15,11 +15,11 @@ class Dev:
     # Enable automatic printing of log into console
     @classmethod
     def enable(cls):
-        return True
+        cls._dev_mode_enabled = True
 
     @classmethod
     def disable(cls):
-        return False
+        cls._dev_mode_enabled = False
 
     # Recording log messages
     @classmethod
