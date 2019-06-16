@@ -60,13 +60,7 @@ SkillLoader._register_leader_skill_class(ObsoleteSkill)
 
 # Import all active skill classes for loading
 
-from .active_skill.attack_attr_damage_as import AttackAttrDamageAS
-from .active_skill.attack_attr_grudge_x_atk_as import AttackAttrGrudgeXatkAS
-from .active_skill.attack_attr_random_x_atk_as import AttackAttrRandomXatkAS
-from .active_skill.attack_attr_x_atk_as import AttackAttrXatkAS
-from .active_skill.attack_attr_x_team_atk_as import AttackAttrXTeamATKAS
-from .active_skill.attack_attr_x_team_hp_as import AttackAttrXTeamHPAS
-from .active_skill.attack_x_atk_as import AttackXatkAS
+from .active_skill.attack_as import AttackAS
 from .active_skill.attribute_atk_and_rcv_boost_as import AttributeATKAndRCVBoostAS
 from .active_skill.attribute_shield_as import AttributeShieldAS
 from .active_skill.awakening_atk_boost_as import AwakeningATKBoostAS
@@ -84,9 +78,6 @@ from .active_skill.damage_shield_as import DamageShieldAS
 from .active_skill.defense_reduction_as import DefenseReductionAS
 from .active_skill.delay_as import DelayAS
 from .active_skill.double_orb_change import DoubleOrbChangeAS
-from .active_skill.drain_attack_attr_x_atk import DrainAttackAttrXatkAS
-from .active_skill.drain_attack_x_atk import DrainAttackXatkAS
-from .active_skill.enemy_attr_attack_attr_damage_as import EnemyAttrAttackAttrDamageAS
 from .active_skill.enemy_attribute_change_as import EnemyAttributeChangeAS
 from .active_skill.enhance_orbs_as import EnhanceOrbsAS
 from .active_skill.enhance_skyfall_as import EnhanceSkyfallAS
@@ -112,8 +103,6 @@ from .active_skill.single_orb_change_as import SingleOrbChangeAS
 from .active_skill.skill_charge_as import SkillChargeAS
 from .active_skill.spawn_orbs_as import SpawnOrbsAS
 from .active_skill.suicide_as import SuicideAS
-from .active_skill.suicide_attack_attr_damage_as import SuicideAttackAttrDamageAS
-from .active_skill.suicide_attack_attr_random_x_atk_as import SuicideAttackAttrRandomXatkAS
 from .active_skill.type_atk_boost_as import TypeATKBoostAS
 from .active_skill.unlock_orbs_as import UnlockOrbsAS
 from .active_skill.void_absorb_as import VoidAbsorbAS
