@@ -2,6 +2,7 @@ pypad/data/raw
 
 .vscode
 /*.py
+/*.bat
 
 # Python related ignores
 

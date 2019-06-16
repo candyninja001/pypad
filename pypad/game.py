@@ -21,13 +21,17 @@ class Game:
 
     _loaded_regions = {}
 
-    def __init__(self, region=Region.NA):
+    def __init__(self, region=Region.NA, force_update=False):
         self._region = region
         if self._region not in self.__class__._loaded_regions:
             self.__class__._loaded_regions[self._region] = {}
             self.__class__._loaded_regions[self._region]['download_manager'] = DownloadManager(self._region)
             self.__class__._loaded_regions[self._region]['player_manager'] = PlayerManager()
-            self._reload()
+            
+            if force_update:
+                self.update()
+            else:
+                self._reload()
         
     # Updates the game to match the current version
     def update(self):

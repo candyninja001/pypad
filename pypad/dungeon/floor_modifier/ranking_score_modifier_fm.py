@@ -1,10 +1,11 @@
 from . import FloorModifier, FloorModifierLoader
+import re
 from ...awakening import Awakening
 
 class RankingScoreModifierFM(FloorModifier):
     @classmethod
     def handles(self, name):
-        return name.startswith('rsm') and name != 'rsma'
+        return re.match('rsm\d+', name)
 
     def parse_value(self):
         self.awakening = Awakening(int(self.name[3:]))
