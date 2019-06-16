@@ -1,6 +1,7 @@
 from .dev import Dev
 from .region import Region
 import os
+import subprocess
 import json
 
 class DownloadManager:
@@ -18,7 +19,7 @@ class DownloadManager:
         if not os.path.exists(raw_region_dir):
             os.mkdir(raw_region_dir)
         Dev.timer_start()
-        os.popen(f'gsutil -m rsync -d -r gs://pypad-data/raw/{region_name} {raw_region_dir}')
+        subprocess.Popen(f'gsutil -m rsync -d -r gs://pypad-data/raw/{region_name} {raw_region_dir}', shell=True, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL).wait()
         Dev.timer_end()
         Dev.log(f'Finished download, took {Dev.timer_read():2f} seconds')
 
