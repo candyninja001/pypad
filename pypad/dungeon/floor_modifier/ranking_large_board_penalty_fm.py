@@ -14,7 +14,7 @@ class RankingLargeBoardPenaltyFM(FloorModifier):
         }
 
     def localize(self) -> str:
-        return '' # TODO
+        return f'-{self.score_reduction} score when using 7x6 board'
 
     @property
     def floor_modifier_type(self):
