@@ -148,7 +148,7 @@ class AttackAS(ActiveSkill, SuicideASI):
         return {
             'damage_calculation_type': self.damage_calculation_type.value,
             'mass_attack': self.mass_attack,
-            'x_team_atk_attributes': self.x_team_atk_attributes,
+            'x_team_atk_attributes': [a.value for a in self.x_team_atk_attributes],
             'attack_attribute': self.attack_attribute.value,
             'target_attribute': self.target_attribute.value,
             'fixed_damage': self.fixed_damage,
