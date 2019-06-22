@@ -69,6 +69,7 @@ from .fixed_move_time_fm import FixedMoveTimeFM
 from .large_board_fm import LargeBoardFM
 from .no_skyfall_fm import NoSkyfallFM
 from .ranking_large_board_penalty_fm import RankingLargeBoardPenaltyFM
+from .ranking_score_time_modifier_fm import RankingScoreTimeModifierFM
 from .rarity_bonus_fm import RarityBonusFM
 from .small_board_fm import SmallBoardFM
 from .time_limit_fm import TimeLimitFM
@@ -78,4 +79,4 @@ from .type_bonus_fm import TypeBonusFM
 from .d_message_fm import DMessageFM
 from .fixed_card_fm import FixedCardFM
 from .s_message_fm import SMessageFM
-from .ranking_score_modifier_fm import RankingScoreModifierFM
+from .ranking_score_awakening_modifier_fm import RankingScoreAwakeningModifierFM

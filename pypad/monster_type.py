@@ -18,5 +18,5 @@ class MonsterType(Enum):
 
     @classmethod
     def _missing_(cls, value):
-        Dev.log(f'Unknown orb skin: {value}')
-        return OrbSkin.UNKNOWN
+        Dev.log(f'Unknown monster type: {value}')
+        return MonsterType.UNKNOWN

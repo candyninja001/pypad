@@ -1,8 +1,10 @@
+from .dev import Dev
 from .region import Region
 from .attack_attribute import AttackAttribute
 from .monster_type import MonsterType
 from .awakening import Awakening
 from .latent_awakening import LatentAwakening
+from .orb_skin import OrbSkin
 from .collab import Collab
 from collections import defaultdict
 
@@ -51,7 +53,7 @@ class CardData:
         j = i + awakening_count
         self.super_awakenings = tuple(Awakening(int(a)) for a in raw_card[j+59].split(',') if a != '')
         self.base_evo_id = raw_card[j+60]
-        self.group = raw_card[j+61] # TODO create a Group class or enum
+        self.group = raw_card[j+61]
         self.types.append(MonsterType(raw_card[j+62]))
         self.types = tuple(t for t in self.types if t != MonsterType.NONE)
         self.sell_value_mp = raw_card[j+63]
@@ -60,8 +62,8 @@ class CardData:
         self.inheritable = raw_card[j+66] = 3
         self.furigana = raw_card[j+67]
         self.limitbreak_stat_increase = raw_card[j+68] / 100
-        self.voice = raw_card[j+69] # TODO create a Voice class or enum
-        self.orb_skin = raw_card[j+70] # TODO create an OrbSkin class or enum
+        self.skill_voice = raw_card[j+69]
+        self.orb_skin = OrbSkin(raw_card[j+70])
 
 
     def _get_curve_value(self, min_stat, max_stat, curve, max_level, level):
@@ -118,7 +120,7 @@ class CardData:
             'awakenings': [a.value for a in self.awakenings],
             'super_awakenings': [a.value for a in self.super_awakenings],
             'base_evo_id': self.base_evo_id,
-            'group': self.group,
+            'group': self.group.value,
             'sell_value_mp': self.sell_value_mp,
             'latent_on_fuse': self.latent_on_fuse.value,
             'collab': self.collab.value,
@@ -126,8 +128,8 @@ class CardData:
             'furigana': self.furigana,
             'limitbreakable': self.limitbreakable,
             'limitbreak_stat_increase': self.limitbreak_stat_increase,
-            'voice_id': self.voice,
-            'orb_skin_unlock': self.orb_skin,
+            'skill_voice': self.skill_voice.value,
+            'orb_skin_unlock': self.orb_skin.value,
         }
 
     @property
@@ -143,7 +145,8 @@ class MonsterBook:
 
     def _register(self, card: CardData):
         # only add cards, not alternate enemies
-        if card.id != 0 and card.id < 100000 and card.released:
+        #if card.id != 0 and card.id < 100000 and card.released: TODO uncomment
+        if card.id != 0:
             self._cards[card.id] = card
             if card.active_skill_id != 0:
                 self._active_skill_map[card.active_skill_id].add(card.id)
