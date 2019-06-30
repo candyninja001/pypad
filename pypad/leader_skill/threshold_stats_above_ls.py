@@ -17,8 +17,10 @@ class ThresholdStatsAboveLS(LeaderSkill):
         self.rcv_multiplier = 1.0
         self.reduction_attributes = all_attr
         self.damage_reduction = 0.0
+        self.damage_reduction_chance = 1.0
 
         if self.internal_skill_type == 43:
+            self.damage_reduction_chance = self.args[1] / 100
             self.damage_reduction = self.args[2] / 100
 
         elif self.internal_skill_type == 44:
@@ -59,6 +61,7 @@ class ThresholdStatsAboveLS(LeaderSkill):
             'rcv_multiplier': self.rcv_multiplier,
             'reduction_attributes': [a.value for a in self.reduction_attributes],
             'damage_reduction': self.damage_reduction,
+            'damage_reduction_chance': self.damage_reduction_chance,
         }
 
     def localize(self):
