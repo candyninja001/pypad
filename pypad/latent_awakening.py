@@ -1,20 +1,22 @@
 from enum import Enum
 from .monster_type import MonsterType
+from .dev import Dev
 
 class LatentAwakening(Enum):
+    UNKNOWN = (-1, 2, [])
     NONE = (0, 1, [])
     IMPROVED_HP = (1, 1, [])
-    IMPROVED_ATK = (2, 1, [])
-    IMPROVED_RCV = (3, 1, [])
+    IMPROVED_ATTACK = (2, 1, [])
+    IMPROVED_RECOVERY = (3, 1, [])
     EXTENDED_MOVE_TIME = (4, 1, [])
-    AUTO_HEAL = (5, 1, [])
+    AUTO_RECOVER = (5, 1, [])
     FIRE_DAMAGE_REDUCTION = (6, 1, [])
     WATER_DAMAGE_REDUCTION = (7, 1, [])
     WOOD_DAMAGE_REDUCTION = (8, 1, [])
     LIGHT_DAMAGE_REDUCTION = (9, 1, [])
     DARK_DAMAGE_REDUCTION = (10, 1, [])
     SKILL_DELAY_RESISTANCE = (11, 1, [])
-    ALL_STATS_ENHANCED = (12, 2, [])
+    ALL_STATS_IMPROVED = (12, 2, [])
     EVO_MATERIAL_KILLER = (16, 2, [])
     AWOKEN_MATERIAL_KILLER = (17, 2, [])
     ENHANCED_MATERIAL_KILLER = (18, 2, [])
@@ -28,8 +30,8 @@ class LatentAwakening(Enum):
     PHYSICAL_KILLER = (26, 2, [MonsterType.BALANCED, MonsterType.ATTACKER])
     HEALER_KILLER = (27, 2, [MonsterType.BALANCED, MonsterType.DRAGON, MonsterType.PHYSICAL])
     IMPROVED_HP_PLUS = (28, 2, [])
-    IMPROVED_ATK_PLUS = (29, 2, [])
-    IMPROVED_RCV_PLUS = (30, 2, [])
+    IMPROVED_ATTACK_PLUS = (29, 2, [])
+    IMPROVED_RECOVERY_PLUS = (30, 2, [])
     EXTENDED_MOVE_TIME_PLUS = (31, 2, [])
     FIRE_DAMAGE_REDUCTION_PLUS = (32, 2, [])
     WATER_DAMAGE_REDUCTION_PLUS = (33, 2, [])
@@ -46,6 +48,11 @@ class LatentAwakening(Enum):
         latent._slots = slots
         latent._types = types
         return latent
+
+    @classmethod
+    def _missing_(cls, value):
+        Dev.log(f'Unknown latent awakening: {value}')
+        return LatentAwakening.UNKNOWN
 
     def slots(self) -> int:
         return self._slots

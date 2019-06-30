@@ -1,4 +1,5 @@
 from enum import Enum
+from .dev import Dev
 
 class OrbAttribute(Enum):
     UNKNOWN = -2
@@ -13,3 +14,8 @@ class OrbAttribute(Enum):
     POISON = 7
     MORTAL_POISON = 8
     BOMB = 9
+
+    @classmethod
+    def _missing_(cls, value):
+        Dev.log(f'Unknown orb attribute: {value}')
+        return OrbAttribute.UNKNOWN

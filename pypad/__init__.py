@@ -8,3 +8,5 @@ __uri__ = "https://github.com/candyninja001/pypad"
 
 __author__ = "Candy"
 __email__ = "candyninja001@gmail.com"
+
+from .game import Game

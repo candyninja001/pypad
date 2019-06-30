@@ -1,14 +1,14 @@
 from enum import Enum
+from .dev import Dev
 
 class AttackAttribute(Enum):
+    UNKNOWN = -2
     NONE = -1
     FIRE = 0
     WATER = 1
     WOOD = 2
     LIGHT = 3
     DARK = 4
-    ATTRIBUTELESS_FIXED = 5 
-    ATTRIBUTELESS_REDUCED = 6
 
     def __ge__(self, other):
         if type(other) == AttackAttribute:
@@ -45,3 +45,14 @@ class AttackAttribute(Enum):
                 return True
             return self.value < other.value
         return NotImplemented
+
+    @classmethod
+    def _missing_(cls, value):
+        Dev.log(f'Unknown attack attribute: {value}')
+        return AttackAttribute.UNKNOWN
+
+all_attr = (AttackAttribute.FIRE,
+            AttackAttribute.WATER,
+            AttackAttribute.WOOD,
+            AttackAttribute.LIGHT,
+            AttackAttribute.DARK)

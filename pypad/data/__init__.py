@@ -1,7 +1,19 @@
 import os
 import json
 import urllib.request
+from datetime import datetime
 from ..region import Region
+
+def get_time(timestamp, region=Region.NA):
+    tz_offsets = {
+        Region.NA: '-0800',
+        Region.JP: '+0900',
+    }
+    return datetime.strptime(f'{timestamp} {tz_offsets[region]}', '%y%m%d%H%M%S %z')
+
+def get_json(file_path: str):
+    with open(file_path, 'r') as input_file:
+        return json.load(input_file)
 
 def get_raw_file(filename: str, region=Region.NA):
     module_dir,_ = os.path.split(__file__)
